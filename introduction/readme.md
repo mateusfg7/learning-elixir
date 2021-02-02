@@ -5,7 +5,7 @@
 _Interative mode_: **iex**
 
 _Initial Commands_:
-```
+```elixir
 iex(1)> 40 + 2
 42
 iex(2)> "hello" <> " world"
@@ -21,7 +21,7 @@ _Get Data Type_: `i data`
 iex(1)> i 1
 ```
 will show something like this:
-```elixir
+```
 Term
   1
 Data type
