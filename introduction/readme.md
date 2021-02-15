@@ -12,7 +12,7 @@ iex(2)> "hello" <> " world"
 "hello world"
 ```
 
-### _Running Scripts_: `elixir simple.exs`
+### _Running Scripts_: `elixir hello-word.exs`
 
 ## [Basic types](https://elixir-lang.org/getting-started/basic-types.html)
 
