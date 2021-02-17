@@ -98,7 +98,7 @@ _code_
 case {1, 2, 3} do       
   {1, _x, 3} ->  
     "This clause will match and bind _x to 2 in this clause"
-   
+
   {4, 5, 6} ->
     "This clause won't match"
 
@@ -176,4 +176,124 @@ iex> f.(1, 3)
 4
 iex> f.(-1, 3)
 -3
+```
+
+### Cond
+
+**Useful to make multi conditions with different values and return the first that match true**
+
+_code_
+```elixir
+cond do
+  2 + 2 == 5 ->
+    "This will not be true"
+  2 * 2 == 3 ->
+    "Nor this"
+  1 + 1 == 2 ->
+    "But this will"
+end
+```
+_out_
+```elixir
+"But this will"
+```
+**This is equivalentto `else if` clause in many imperative languages (used much less here)**
+
+**Is necessary add a final condition equal `true`, wich always will match, because if all the conditions return `nil` of `false`an error `CondClauseError` is raised**
+
+_code_
+```elixir
+cond do
+  2 + 2 == 5 -> 
+    "This is never true"
+  2 * 2 -> 3
+    "Nor this"
+  true ->
+    "This is always true, equivalent to else"
+end
+```
+_out_
+```elixir
+"This is always true, equivalent to else"
+```
+
+**`cond` considers any value besides `nil` or `false` to be `true`**
+
+_code_
+```elixir
+cond do
+  hd([1, 2, 3]) -> "1 is considered as true"
+end
+```
+_out_
+```elixir
+"1 is considered true"
+```
+
+### If/Unless
+
+**Elixir povider macros `if/2` and `unless/2` wich are useful when you needto checkfor onlyon condition**
+
+_code_
+```elixir
+if true do
+  "This works!"
+end
+```
+_out_
+```elixir
+This works!""
+```
+
+_code_
+```elixir
+unless true do
+  "This is will never be seen"
+end
+```
+_out_
+```elixir
+nil
+```
+
+**They also suport `else`**
+```elixir
+if nil do
+  "This won't be seen"
+else
+  "This will"
+end
+```
+_out_
+```elixir
+"This will"
+```
+
+### `do/end` blocks
+
+```elixir
+iex> if true, do: 1 + 2
+2
+iex> if false, do: :this, else: :that
+:that
+```
+
+These are equivalent:
+_code/1_
+```elixir
+if true do
+  a = 1 + 2
+  a + 10
+end
+```
+_code/2_
+```elixir
+if true, do: (
+  a = 1 + 2
+  a + 10
+)
+```
+_out/all_
+```
+13
 ```
